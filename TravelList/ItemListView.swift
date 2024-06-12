@@ -30,7 +30,8 @@ struct BorderedRoundedButtonStyle: ButtonStyle {
 }
 
 // 配列の要素をstructで定義
-struct TravelItem {
+struct TravelItem: Identifiable {
+    let id = UUID()
     var isChecked: Bool
     var item: String
 }
@@ -75,25 +76,32 @@ struct ItemListView: View {
                 } // HStack
                 
                 
-                List(0 ..< travelLists.count, id:\.self) { index in
-                    HStack {
-                        Image(systemName:
-                                travelLists[index].isChecked ? "square.fill" : "square")
-                        .onTapGesture {
-                            travelLists[index].isChecked.toggle()
-                        }
-                        Text(travelLists[index].item)
-                    } // HStack
-                    
+                List {
+                    ForEach(travelLists) { item in
+                        HStack {
+                            Image(systemName:
+                                    item.isChecked ? "square.fill" : "square")
+                            .onTapGesture {
+                                if let index = travelLists.firstIndex(where: { $0.id == item.id }) {
+                                    travelLists[index].isChecked.toggle()
+                                }
+                            }
+                            Text(item.item)
+                        } // HStack
+                        
+                    } // ForEach
+                    .onDelete(perform: deleteItems)
                 } // List
             } // VStack
         } // ZStack
-        
-        
-        
-        
     } // body
+    func deleteItems(at offsets: IndexSet) {
+        travelLists.remove(atOffsets: offsets)
+    }
+    
 } // ItemListView
+
+
 
 #Preview {
     ItemListView()
