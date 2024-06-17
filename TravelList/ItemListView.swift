@@ -46,36 +46,46 @@ struct ItemListView: View {
     ]
     
     var body: some View {
-        
-        ZStack {
-            VStack {
-                HStack {
-                    TextField("必要なものを追加", text: $inputItem)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(EdgeInsets(
-                            top: 10,
-                            leading: 10,
-                            bottom: 20,
-                            trailing: 20
-                        )) // TextField
-                    
-                    Button(action: {
-                        if !inputItem.isEmpty {
-                            print("追加されました")
-                            travelLists.append(
-                                TravelItem(isChecked: false, item: inputItem)
-                            )
-                            inputItem = ""
-                        } // if
-                    }, label: {
-                        Text("追加")
-                    }) // Button
-                    .buttonStyle(BorderedRoundedButtonStyle())
-                    .padding(.trailing, 20)
-                    .disabled(inputItem.isEmpty)
-                } // HStack
-                
-                
+        GeometryReader { geometry in
+            
+         ZStack {
+                Color.customBackgroundColor
+                    .ignoresSafeArea()
+             ScrollView {
+                 VStack {
+                     HStack {
+                         TextField("必要なものを追加", text: $inputItem)
+                         //    .textFieldStyle(.roundedBorder)
+                           //  .background(.white)
+                             .overlay(
+                                RoundedRectangle(cornerSize: CGSize(width: 8.0, height: 8.0))
+                                    .stroke(Color.green, lineWidth: 1.5)
+                                    .padding(-7.0)
+                             )
+                             .padding(EdgeInsets(
+                                top: 10,
+                                leading: 20,
+                                bottom: 5,
+                                trailing: 20
+                             )) // TextField
+                            
+                            Button(action: {
+                                if !inputItem.isEmpty {
+                                    print("追加されました")
+                                    travelLists.append(
+                                        TravelItem(isChecked: false, item: inputItem)
+                                    )
+                                    inputItem = ""
+                                } // if
+                            }, label: {
+                                Text("追加")
+                            }) // Button
+                            .buttonStyle(BorderedRoundedButtonStyle())
+                            .padding(.trailing, 20)
+                            .disabled(inputItem.isEmpty)
+                        } // HStack
+                        
+                        
                 List {
                     ForEach(travelLists) { item in
                         HStack {
@@ -88,12 +98,20 @@ struct ItemListView: View {
                             }
                             Text(item.item)
                         } // HStack
-                        
-                    } // ForEach
-                    .onDelete(perform: deleteItems)
-                } // List
-            } // VStack
-        } // ZStack
+                                
+                } // ForEach
+                 .onDelete(perform: deleteItems)
+                  .listRowSeparatorTint(.green)
+              } // List
+                .scrollContentBackground(.hidden)
+               
+                     
+              } // VStack
+                    .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+             } // ScrollView
+                .scrollDismissesKeyboard(.immediately)
+            } // ZStack
+        } // GeometryReader
     } // body
     func deleteItems(at offsets: IndexSet) {
         travelLists.remove(atOffsets: offsets)
