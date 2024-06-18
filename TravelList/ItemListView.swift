@@ -48,26 +48,26 @@ struct ItemListView: View {
     var body: some View {
         GeometryReader { geometry in
             
-         ZStack {
+            ZStack {
                 Color.customBackgroundColor
                     .ignoresSafeArea()
-             ScrollView {
-                 VStack {
-                     HStack {
-                         TextField("必要なものを追加", text: $inputItem)
-                         //    .textFieldStyle(.roundedBorder)
-                           //  .background(.white)
-                             .overlay(
-                                RoundedRectangle(cornerSize: CGSize(width: 8.0, height: 8.0))
-                                    .stroke(Color.green, lineWidth: 1.5)
-                                    .padding(-7.0)
-                             )
-                             .padding(EdgeInsets(
-                                top: 10,
-                                leading: 20,
-                                bottom: 5,
-                                trailing: 20
-                             )) // TextField
+                ScrollView {
+                    VStack {
+                        HStack {
+                            TextField("必要なものを追加", text: $inputItem)
+                            //    .textFieldStyle(.roundedBorder)
+                            //  .background(.white)
+                                .overlay(
+                                    RoundedRectangle(cornerSize: CGSize(width: 8.0, height: 8.0))
+                                        .stroke(Color.green, lineWidth: 1.5)
+                                        .padding(-7.0)
+                                )
+                                .padding(EdgeInsets(
+                                    top: 10,
+                                    leading: 20,
+                                    bottom: 5,
+                                    trailing: 20
+                                )) // TextField
                             
                             Button(action: {
                                 if !inputItem.isEmpty {
@@ -86,35 +86,52 @@ struct ItemListView: View {
                         } // HStack
                         
                         
-                List {
-                    ForEach(travelLists) { item in
-                        HStack {
-                            Image(systemName:
-                                    item.isChecked ? "square.fill" : "square")
-                            .onTapGesture {
-                                if let index = travelLists.firstIndex(where: { $0.id == item.id }) {
-                                    travelLists[index].isChecked.toggle()
-                                }
-                            }
-                            Text(item.item)
-                        } // HStack
+                        List {
+                            ForEach(travelLists) { item in
+                                HStack {
+                                    Image(systemName:
+                                            item.isChecked ? "square.fill" : "square")
+                                    .onTapGesture {
+                                        if let index = travelLists.firstIndex(where: { $0.id == item.id }) {
+                                            travelLists[index].isChecked.toggle()
+                                        }
+                                    }
+                                    Text(item.item)
+                                } // HStack
                                 
-                } // ForEach
-                 .onDelete(perform: deleteItems)
-                  .listRowSeparatorTint(.green)
-              } // List
-                .scrollContentBackground(.hidden)
-               
-                     
-              } // VStack
+                            } // ForEach
+                            .onDelete(perform: deleteItems)
+                            .listRowSeparatorTint(.green)
+                        } // List
+                        .scrollContentBackground(.hidden)
+                        
+                        Button(action: {
+                            clearCheckboxes()
+                        }, label: {
+                            Text("チェックボックスをクリア")
+                                .padding(EdgeInsets(
+                                top: 3,
+                                leading: 3,
+                                bottom: 3,
+                                trailing: 3
+                                ))
+                        }) // クリアボタン
+                        
+                    } // VStack
                     .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
-             } // ScrollView
+                } // ScrollView
                 .scrollDismissesKeyboard(.immediately)
             } // ZStack
         } // GeometryReader
     } // body
     func deleteItems(at offsets: IndexSet) {
         travelLists.remove(atOffsets: offsets)
+    }
+    
+    func clearCheckboxes() {
+        for index in travelLists.indices {
+            travelLists[index].isChecked = false
+        }
     }
     
 } // ItemListView
