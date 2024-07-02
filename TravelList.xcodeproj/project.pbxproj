@@ -13,6 +13,8 @@
 		E341E68E2C0D61B600D6EE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E341E68D2C0D61B600D6EE15 /* Assets.xcassets */; };
 		E341E6912C0D61B600D6EE15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E341E6902C0D61B600D6EE15 /* Preview Assets.xcassets */; };
 		E357EBC72C2EA99E007A3DAB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E357EBC62C2EA99E007A3DAB /* RealmSwift */; };
+		E357EBC92C2EAE42007A3DAB /* TravelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357EBC82C2EAE42007A3DAB /* TravelItem.swift */; };
+		E357EBCB2C2EB08E007A3DAB /* TravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357EBCA2C2EB08E007A3DAB /* TravelViewModel.swift */; };
 		E3C6C5A82C19740B0089FFAD /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C6C5A72C19740B0089FFAD /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		E341E68B2C0D61B500D6EE15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E341E68D2C0D61B600D6EE15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E341E6902C0D61B600D6EE15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E357EBC82C2EAE42007A3DAB /* TravelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelItem.swift; sourceTree = "<group>"; };
+		E357EBCA2C2EB08E007A3DAB /* TravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewModel.swift; sourceTree = "<group>"; };
 		E3C6C5A72C19740B0089FFAD /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +65,8 @@
 				E3C6C5A72C19740B0089FFAD /* ColorExtension.swift */,
 				E341E68B2C0D61B500D6EE15 /* ContentView.swift */,
 				E3134FDE2C0ED9D600897C37 /* ItemListView.swift */,
+				E357EBCA2C2EB08E007A3DAB /* TravelViewModel.swift */,
+				E357EBC82C2EAE42007A3DAB /* TravelItem.swift */,
 				E341E68D2C0D61B600D6EE15 /* Assets.xcassets */,
 				E341E68F2C0D61B600D6EE15 /* Preview Content */,
 			);
@@ -153,7 +159,9 @@
 			files = (
 				E341E68C2C0D61B500D6EE15 /* ContentView.swift in Sources */,
 				E3134FDF2C0ED9D600897C37 /* ItemListView.swift in Sources */,
+				E357EBC92C2EAE42007A3DAB /* TravelItem.swift in Sources */,
 				E341E68A2C0D61B500D6EE15 /* TravelListApp.swift in Sources */,
+				E357EBCB2C2EB08E007A3DAB /* TravelViewModel.swift in Sources */,
 				E3C6C5A82C19740B0089FFAD /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
