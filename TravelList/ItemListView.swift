@@ -39,7 +39,7 @@ struct BorderedRoundedButtonStyle: ButtonStyle {
 
 struct ItemListView: View {
     
-    @ObservedObject var viewModel = TravelViewModel()
+    @StateObject var viewModel = TravelViewModel()
     @State var inputItem: String = ""
  /*   @State var travelLists: [TravelItem] = [
         TravelItem(isChecked: true, item: "着替え"),

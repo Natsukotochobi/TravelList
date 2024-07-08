@@ -44,9 +44,10 @@ class TravelViewModel: ObservableObject {
     
 
     func loadTravelItems() {
-        let items = realm.objects(TravelItem.self)
+        let items = realm.objects(TravelItem.self)  //Results<TravelItem>型になる
         travelLists = Array(items)
     }
+    
 
     func addTravelItem(title: String) {
         let newItem = TravelItem()
@@ -62,7 +63,7 @@ class TravelViewModel: ObservableObject {
         }
     }
 
-   /* func deleteTravelItems(at offsets: IndexSet) {
+ /*   func deleteTravelItems(at offsets: IndexSet) {
         offsets.map { travelLists[$0] }.forEach { item in
             do {
                 try realm.write {
@@ -73,7 +74,7 @@ class TravelViewModel: ObservableObject {
             }
         }
         loadTravelItems()
-    }　*/
+    } */
     
     func deleteTravelItems(at offsets: IndexSet) {
         let itemToDelete = offsets.map { travelLists[$0] }
