@@ -12,7 +12,6 @@ struct ContentView: View {
         
         NavigationView {
             ItemListView()
-            
                 .navigationTitle("旅の持ち物")
         } // NavigationView
     } // body

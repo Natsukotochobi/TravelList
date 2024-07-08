@@ -62,19 +62,6 @@ class TravelViewModel: ObservableObject {
             print("TravelItemの追加に失敗しました。 Error: \(error.localizedDescription)")
         }
     }
-
- /*   func deleteTravelItems(at offsets: IndexSet) {
-        offsets.map { travelLists[$0] }.forEach { item in
-            do {
-                try realm.write {
-                    realm.delete(item)
-                }
-            } catch {
-                print("TravelItemのリストからの削除に失敗しました。 Error: \(error.localizedDescription)")
-            }
-        }
-        loadTravelItems()
-    } */
     
     func deleteTravelItems(at offsets: IndexSet) {
         let itemToDelete = offsets.map { travelLists[$0] }

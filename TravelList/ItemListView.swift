@@ -30,22 +30,10 @@ struct BorderedRoundedButtonStyle: ButtonStyle {
     }
 }
 
-// 配列の要素をstructで定義
-/*  struct TravelItem: Identifiable {
-    let id = UUID()
-    var isChecked: Bool
-    var item: String
-} */
-
 struct ItemListView: View {
     
     @StateObject var viewModel = TravelViewModel()
     @State var inputItem: String = ""
- /*   @State var travelLists: [TravelItem] = [
-        TravelItem(isChecked: true, item: "着替え"),
-        TravelItem(isChecked: false, item: "充電器"),
-        TravelItem(isChecked: false, item: "化粧品")
-    ] */
     
     var body: some View {
         GeometryReader { geometry in
@@ -57,8 +45,6 @@ struct ItemListView: View {
                     VStack {
                         HStack {
                             TextField("必要なものを追加", text: $inputItem)
-                            //    .textFieldStyle(.roundedBorder)
-                            //  .background(.white)
                                 .overlay(
                                     RoundedRectangle(cornerSize: CGSize(width: 8.0, height: 8.0))
                                         .stroke(Color.green, lineWidth: 1.5)
@@ -75,9 +61,6 @@ struct ItemListView: View {
                                 if !inputItem.isEmpty {
                                     print("追加されました")
                                     viewModel.addTravelItem(title: inputItem)
-                             /*       travelLists.append(
-                                        TravelItem(isChecked: false, item: inputItem)
-                                    ) */
                                     inputItem = ""
                                 } // if
                             }, label: {
@@ -95,9 +78,6 @@ struct ItemListView: View {
                                     Image(systemName:
                                             item.isChecked ? "square.fill" : "square")
                                     .onTapGesture {
-                                /*        if let index = travelLists.firstIndex(where: { $0.id == item.id }) {
-                                            travelLists[index].isChecked.toggle()
-                                        } */
                                         viewModel.toggleCheck(for: item)
                                     }
                                     Text(item.item)
@@ -111,14 +91,13 @@ struct ItemListView: View {
                         
                         Button(action: {
                             viewModel.clearCheckboxes()
-                         //   clearCheckboxes()
                         }, label: {
                             Text("チェックボックスをクリア")
                                 .padding(EdgeInsets(
-                                top: 3,
-                                leading: 3,
-                                bottom: 3,
-                                trailing: 3
+                                    top: 3,
+                                    leading: 3,
+                                    bottom: 3,
+                                    trailing: 3
                                 ))
                         }) // クリアボタン
                         
@@ -131,15 +110,7 @@ struct ItemListView: View {
     } // body
     func deleteItems(at offsets: IndexSet) {
         viewModel.deleteTravelItems(at: offsets)
-      //  travelLists.remove(atOffsets: offsets)
     }
-    
- /*   func clearCheckboxes() {
-        for index in travelLists.indices {
-            travelLists[index].isChecked = false
-        }
-    } */
-    
 } // ItemListView
 
 
